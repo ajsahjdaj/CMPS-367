@@ -9,6 +9,7 @@ I will use a struct to store credit card information and create an object to
 access it. 
 
 The program should perform the following steps:
+
     1. Ask the user to enter the following information:
         a. Name
         b. Credit Card Balance
@@ -25,8 +26,7 @@ The program should perform the following steps:
             4. Output the user's name, current credit card balance, annual interest rate,
             the number of months to pay off the balance, and the monthly payment
             required.
-
-
+            
 Example: 
 Output
 Please enter your name: Sakara
