@@ -28,7 +28,7 @@ The program should perform the following steps:
 
 
 Example: 
-//Output
+Output
 Please enter your name: Sakara
 Please enter the current credit card balance: 1000
 Please enter the annual interest rate (in percentage): 15
