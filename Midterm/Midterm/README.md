@@ -1,7 +1,7 @@
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
-Assignment 3: Calculator
+Midterm
 
-For this project, I:
+For this midterm, I:
 a. Created a C++ console app, where the user will input information to choose five different ways to select their academic course class.
 c. The way the program should run is by asking the user to enter the choose one of the five following options (1,2,3,4,5). 
 
