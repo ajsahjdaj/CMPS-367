@@ -16,6 +16,7 @@ system and asking them to select the following options:
 • Override a Class
 
 This is the structure of the code:
+
     1. Define a base class named Course with the following attributes:
 • courseCode (string): the unique code for the course.
 • courseTitle (string): the title of the course.
@@ -23,7 +24,8 @@ This is the structure of the code:
 register for the course.
 • currentEnrollment (integer): the current number of students
 enrolled in the course.
-    2. Create two derived class named RequiredCourse and ElectiveCourse that
+
+     2. Create two derived class named RequiredCourse and ElectiveCourse that
 inherit from the Course class.
 • RequiredCourse should have an additional attribute:
 • prerequisite (string): a description of the prerequisite required
@@ -31,9 +33,11 @@ for enrollment.
 • ElectiveCourse should have an additional attribute:
 • minimumLevel (integer): the minimum academic level
 required for enrollment.
+
     3. Implement a method in each subclass called checkEligibility() that checks
 whether a student is eligible to register for the course based on the
 subclass-specific attributes.
+
     4. In the main() function, use a loop to continuously display the menu and
 perform actions based on the user's choice.
 • For each option:
