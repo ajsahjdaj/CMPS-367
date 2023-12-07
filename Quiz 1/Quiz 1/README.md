@@ -9,11 +9,12 @@ I will use a struct to store credit card information and create an object to
 access it. 
 
 The program should perform the following steps:
+
     1. Ask the user to enter the following information:
         a. Name
         b. Credit Card Balance
         c. Annual Interest Rate (in percentage)
-        d. Desired Number of months to pay off balance    
+        d. Desired Number of months to pay off balance   
     2. Store the following responses in a struct variables.
     3. Use the following formula to calculate the monthly payment on a fixed-rate
             loan:
