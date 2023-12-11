@@ -10,66 +10,75 @@ a. Create a program that will ask the user to enter their name, age, gender (mal
 
 using namespace std;
 
-int main() {
-    // Declare variables to store user input
-    string name, gender;
-    int age, heightFeet, heightInches;
+// Define a struct to store user information
+struct UserInfo {
+    string name;
+    int age;
+    string gender;
+    int heightFeet;
+    int heightInches;
     double weightInPounds;
+    double bmi;
+    string bmiCategory;
+};
+
+int main() {
+    // Declare an object of the UserInfo struct
+    UserInfo user;
 
     // Ask the user to enter their information
     cout << "Please enter your name: ";
-    getline(cin, name);
+    getline(cin, user.name);
 
     cout << "Please enter your age: ";
-    cin >> age;
+    cin >> user.age;
 
     cout << "Please enter your Gender (male/female): ";
     cin.ignore(); // Ignore the newline character left in the buffer
-    getline(cin, gender);
+    getline(cin, user.gender);
 
     cout << "Please enter your height in feet: ";
-    cin >> heightFeet;
+    cin >> user.heightFeet;
 
     cout << "Please enter your height in inches: ";
-    cin >> heightInches;
+    cin >> user.heightInches;
 
     cout << "Please enter your weight in pounds: ";
-    cin >> weightInPounds;
+    cin >> user.weightInPounds;
 
     // Calculate BMI
-    int heightInInches = (heightFeet * 12) + heightInches;
-    double bmi = (703 * weightInPounds) / (heightInInches * heightInInches);
+    int heightInInches = (user.heightFeet * 12) + user.heightInches;
+    user.bmi = (703 * user.weightInPounds) / (heightInInches * heightInInches);
 
     // Determine BMI category
-    string bmiCategory;
-    if (bmi < 16) {
-        bmiCategory = "Severe Thinness";
-    } else if (bmi < 17) {
-        bmiCategory = "Moderate Thinness";
-    } else if (bmi < 18.5) {
-        bmiCategory = "Mild Thinness";
-    } else if (bmi < 25) {
-        bmiCategory = "Normal";
-    } else if (bmi < 30) {
-        bmiCategory = "Overweight";
-    } else if (bmi < 35) {
-        bmiCategory = "Obese Class I";
-    } else if (bmi < 40) {
-        bmiCategory = "Obese Class II";
+    if (user.bmi < 16) {
+        user.bmiCategory = "Severe Thinness";
+    } else if (user.bmi < 17) {
+        user.bmiCategory = "Moderate Thinness";
+    } else if (user.bmi < 18.5) {
+        user.bmiCategory = "Mild Thinness";
+    } else if (user.bmi < 25) {
+        user.bmiCategory = "Normal";
+    } else if (user.bmi < 30) {
+        user.bmiCategory = "Overweight";
+    } else if (user.bmi < 35) {
+        user.bmiCategory = "Obese Class I";
+    } else if (user.bmi < 40) {
+        user.bmiCategory = "Obese Class II";
     } else {
-        bmiCategory = "Obese Class III";
+        user.bmiCategory = "Obese Class III";
     }
 
     // Output user information and BMI category
-    cout << "\nHi " << name << "," << endl;
+    cout << "\nHi " << user.name << "," << endl;
     cout << endl;
-    cout << "You are a " << gender << ". You are " << age << " years old. You are currently " << heightFeet << "'" << heightInches << " and you currently weigh " << weightInPounds << " pounds. Your BMI is " << bmi << ", which is " << bmiCategory << "." << endl;
-
+    cout << "You are a " << user.gender << ". You are " << user.age << " years old. You are currently "
+         << user.heightFeet << "'" << user.heightInches << " and you currently weigh " << user.weightInPounds
+         << "\n  pounds. Your BMI is " << user.bmi << ", which is " << user.bmiCategory << "." << endl;
     cout << "\nThank you for using the BMI Calculator!" << endl;
 
     return 0;
-}
-//--------------------------------------------------------------
+}//--------------------------------------------------------------
 // Output:
 //Please enter your name: Alex
 //Please enter your age: 19
