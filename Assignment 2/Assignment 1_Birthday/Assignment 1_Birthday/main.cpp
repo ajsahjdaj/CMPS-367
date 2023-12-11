@@ -8,44 +8,49 @@ a. For this problem, you will create a C++ console app, where you will ask the u
 #include <iostream>
 using namespace std;
 
+struct Birthday {
+    int month;
+    int day;
+    int year;
+};
+
 int main() {
     char choice;
-
     while (true) {
         cout << "Welcome to Birthday Date Meaning Generator!" << endl;
         cout << endl;
+        
+        Birthday userBirthday; // Create an object of the Birthday struct
+        
         cout << "Please enter the month of your birthday: ";
-        int month;
-        cin >> month;
-
-        if (month < 1 || month > 12) {
+        cin >> userBirthday.month;
+        if (userBirthday.month < 1 || userBirthday.month > 12) {
             cout << "Invalid month. Please enter a valid month (1-12)." << endl;
             cout << endl;
             continue;
         }
+        
         cout << endl;
         cout << "Please enter the day of your birthday: ";
-        int day;
-        cin >> day;
-
-        if (day < 1 || day > 31) {
+        cin >> userBirthday.day;
+        if (userBirthday.day < 1 || userBirthday.day > 31) {
             cout << "Invalid day. Please enter a valid day (1-31)." << endl;
             cout << endl;
             continue;
         }
+        
         cout << endl;
         cout << "Please enter the year of your birthday (2000-2023): ";
-        int year;
-        cin >> year;
-
-        if (year < 2000 || year > 2023) {
+        cin >> userBirthday.year;
+        if (userBirthday.year < 2000 || userBirthday.year > 2023) {
             cout << "Invalid year. Please enter a year between 2000 and 2023." << endl;
             cout << endl;
             continue;
         }
+        
         cout << endl;
         cout << "The month of ";
-        switch (month) {
+        switch (userBirthday.month) {
             case 1:
                 cout << "January";
                 break;
@@ -59,38 +64,7 @@ int main() {
         }
         cout << " means ";
 
-        switch (month) {
-            case 1:
-                cout << "Janus";
-                break;
-            case 2:
-                cout << "Another meaning for February";
-                break;
-            // Add meanings for other months here
-            default:
-                cout << "Invalid month";
-                break;
-        }
-
-        cout << endl;
-        cout << endl;
-
-        cout << "The " << day << " of ";
-        switch (month) {
-            case 1:
-                cout << "January";
-                break;
-            case 2:
-                cout << "February";
-                break;
-            // Add cases for other months here
-            default:
-                cout << "Invalid month";
-                break;
-        }
-        cout << " means ";
-
-        switch (day) {
+        switch (userBirthday.day) {
             case 1:
                 cout << "Self-Started";
                 break;
@@ -106,16 +80,16 @@ int main() {
         cout << endl;
         cout << endl;
 
-        cout << "The year of " << year << " means ";
-        if (year >= 2000 && year <= 2023) {
+        cout << "The year of " << userBirthday.year << " means ";
+        if (userBirthday.year >= 2000 && userBirthday.year <= 2023) {
             cout << "that you are millennial";
         } else {
             cout << "Invalid year";
         }
 
         cout << endl;
+        
         cout << endl;
-
         cout << "Would you like to try another one? (Type 'N' to exit): ";
         cin >> choice;
         cout << endl;
@@ -124,7 +98,6 @@ int main() {
             break;
         }
     }
-
     return 0;
 }
 
