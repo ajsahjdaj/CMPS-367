@@ -11,6 +11,13 @@ a. For this problem, you will create a C++ console app, where you will ask the u
 
 using namespace std;
 
+struct Calculator {
+    float result;
+    char choice;
+    int index;
+    string problem;
+};
+
 // Function to understand math symbols
 bool isOperator(char c) {
     return (c == '+' || c == '-' || c == '*' || c == '/' || c == '^');
@@ -19,56 +26,47 @@ bool isOperator(char c) {
 // Function to calculate
 float calculate(float num1, float num2, char op) {
     switch (op) {
-        case '+':
-            return num1 + num2;
-        case '-':
-            return num1 - num2;
-        case '*':
-            return num1 * num2;
-        case '/':
-            return num1 / num2;
-        case '^':
-            return pow(num1, num2);
-        default:
-            return 0.0;
+        case '+': return num1 + num2;
+        case '-': return num1 - num2;
+        case '*': return num1 * num2;
+        case '/': return num1 / num2;
+        case '^': return pow(num1, num2);
+        default: return 0.0;
     }
 }
 
 // Function to solve parentheses
-float solveOperation(string& expression, int& index) {
+float solveOperation(Calculator& calc) {
     float result = 0.0;
     char op = ' ';
     bool foundOperator = false;
 
-    while (index < expression.length()) {
-        char currentChar = expression[index];
+    while (calc.index < calc.problem.length()) {
+        char currentChar = calc.problem[calc.index];
 
         if (currentChar == '(') {
             // Solve the inner parentheses
-            index++;
-            float innerResult = solveOperation(expression, index);
+            calc.index++;
+            float innerResult = solveOperation(calc);
             if (foundOperator)
                 result = calculate(result, innerResult, op);
             else
                 result = innerResult;
             foundOperator = false;
-        }
-        else if (currentChar == ')') {
-            index++;
+        } else if (currentChar == ')') {
+            calc.index++;
             break;
-        }
-        else if (isOperator(currentChar)) {
+        } else if (isOperator(currentChar)) {
             // Found an operator
             op = currentChar;
             foundOperator = true;
-            index++;
-        }
-        else if (isdigit(currentChar) || currentChar == '.') {
+            calc.index++;
+        } else if (isdigit(currentChar) || currentChar == '.') {
             // Found a digit or decimal point
             string numStr;
-            while (index < expression.length() && (isdigit(expression[index]) || expression[index] == '.')) {
-                numStr += expression[index];
-                index++;
+            while (calc.index < calc.problem.length() && (isdigit(calc.problem[calc.index]) || calc.problem[calc.index] == '.')) {
+                numStr += calc.problem[calc.index];
+                calc.index++;
             }
             float num = stof(numStr);
             if (foundOperator)
@@ -76,37 +74,37 @@ float solveOperation(string& expression, int& index) {
             else
                 result = num;
             foundOperator = false;
-        }
-        else {
+        } else {
             // Ignore other characters
-            index++;
+            calc.index++;
         }
     }
+
     return result;
 }
 
-int main()
-   {
-    char choice = 'Y';
-    
-    while (choice == 'Y' || choice == 'y') {
-        cout << "Enter a problem to solve: ";
-        string problem;
-        getline(cin, problem);
+int main() {
+    Calculator calc;
 
-        int index = 0;
-        float result = solveOperation(problem, index);
-        
-        //display the output
+    calc.choice = 'Y';
+    while (calc.choice == 'Y' || calc.choice == 'y') {
+        cout << "Enter a problem to solve: ";
+        getline(cin, calc.problem);
+        calc.index = 0;
+        calc.result = solveOperation(calc);
+
+        // Display the output
         cout << endl;
         cout << "Here are the steps:\n";
         cout << endl;
-        cout << "The answer to this problem is: " << result << endl;
+        cout << "The answer to this problem is: " << calc.result << endl;
         cout << endl;
-        cout << "Would you like to solve another problem? (Y/N) "; cin >> choice;
+        cout << "Would you like to solve another problem? (Y/N) ";
+        cin >> calc.choice;
         cin.ignore();
     }
-    cout << endl;        cout << endl;
+
+    cout << endl;
     cout << "Thank you for using this calculator!" << endl;
 
     return 0;
